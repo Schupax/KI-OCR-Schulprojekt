@@ -10,7 +10,7 @@ class IO(object):
         pNeuronalesNetz.loadModel()
     #in craete fehlt Funktion zum speichern
     def save(self, pNeuronalesNetz, pPfad):   
-        pNeuronalesNetz.getModel().save(pPfad)
+        pNeuronalesNetz.save(pPfad)
     #in testNetwork fehlt Funktion zum testen      
     def test(self,pNeuronalesNetz):
         pNeuronalesNetz.test()

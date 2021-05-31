@@ -1,22 +1,26 @@
 import install_requirements
 
+#diese Inhalte sollten in die Blackbox
 import keras
 import numpy as np
 import tensorflow as tf
-import matplotlib.pyplot as plt
+from conda.common._logic import TRUE
 
 class NeuronalesNetz(object):
     
     def __init__(self,pLayers,pDataset = 0):
         self.layers = pLayers
-        self.__initLayers()
+        self.wurdeTrainiert = False
         if pDataset == 0:
             self.dataset = tf.keras.datasets.mnist
         else:
             self.dataset = pDataset
         self.model = tf.keras.models.Sequential()
         
+        
+        
     def train(self):
+        self.__initLayers()
         (x_train, y_train),(x_test, y_test) = self.dataset.load_data()
         x_train = tf.keras.utils.normalize(x_train, axis=1)
         x_test = tf.keras.utils.normalize(x_test, axis=1)
@@ -31,6 +35,13 @@ class NeuronalesNetz(object):
                       metrics=['accuracy'])
         
         self.model.fit(x_train, y_train, epochs=3)
+        self.wurdeTrainiert = True
+    
+    def save(self, pPfad):
+        if self.wurdeTrainiert:
+            self.model.save(pPfad)
+        #else:   
+            #Message/ Exception ´´ 
                
     def __initLayers(self):
         self.model.add(tf.keras.layers.Flatten())
@@ -40,8 +51,8 @@ class NeuronalesNetz(object):
             else:
                 self.model.add(tf.keras.layers.Dense(10, activation=tf.nn.softmax))
                 
-    def getModel(self):
-        return self.model
+    def setLayers(self, pLayers):
+        self.layers = pLayers
     
     def test(self):
         (x_train, y_train),(x_test, y_test) = self.dataset.load_data()
@@ -64,8 +75,6 @@ class NeuronalesNetz(object):
                 #print('WRONG')
                 #print('---------------')
                 count+=1
-            plt.imshow(x_test[x], cmap=plt.cm.binary)
-            plt.show()
         print("The program got", count, 'wrong, out of', len(x_test))
         print(str(100 - ((count/len(x_test))*100)) + '% correct')
     
