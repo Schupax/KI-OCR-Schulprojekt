@@ -1,62 +1,51 @@
-import install_requirements
-
-#diese Inhalte sollten in die Blackbox
-import keras
 import numpy as np
-import tensorflow as tf
-from conda.common._logic import TRUE
+import Dataset
+import Regelwerk
+
+"""
+    Diese Modellklasse fasst die Eigenschaften und Funktionen/Methoden eines neuronalen Netzes zusammen.
+"""
 
 class NeuronalesNetz(object):
     
-    def __init__(self,pLayers,pDataset = 0):
+    def __init__(self,pLayers, pRegelwerk, pDataset = 0):
         self.layers = pLayers
         self.wurdeTrainiert = False
+        self.regelwerk = pRegelwerk
         if pDataset == 0:
-            self.dataset = tf.keras.datasets.mnist
+            self.dataset = Dataset()
+            self.dataset.loadMNIST()
         else:
             self.dataset = pDataset
-        self.model = tf.keras.models.Sequential()
-        
         
         
     def train(self):
         self.__initLayers()
-        (x_train, y_train),(x_test, y_test) = self.dataset.load_data()
-        x_train = tf.keras.utils.normalize(x_train, axis=1)
-        x_test = tf.keras.utils.normalize(x_test, axis=1)
-        
+        (x_train, y_train) = self.dataset.getTrainingData()
+        x_train = self.dataset.normalize(x_train)
         for train in range(len(x_train)):
             for row in range(28):
                 for x in range(28):
                     if x_train[train][row][x] != 0:
                         x_train[train][row][x] = 1
-        self.model.compile(optimizer='adam',
-                      loss='sparse_categorical_crossentropy',
-                      metrics=['accuracy'])
-        
-        self.model.fit(x_train, y_train, epochs=3)
+        self.regelwerk.fit()
         self.wurdeTrainiert = True
     
     def save(self, pPfad):
         if self.wurdeTrainiert:
-            self.model.save(pPfad)
+            self.regelwerk.speicherNetzwerk(pPfad)
         #else:   
             #Message/ Exception ´´ 
-               
-    def __initLayers(self):
-        self.model.add(tf.keras.layers.Flatten())
-        for layer in self.layers:
-            if layer.getLayerType() == 1 or layer.getLayerType() == 2:
-                self.model.add(tf.keras.layers.Dense(layer.getNeuronenAnzahl(), activation=tf.nn.relu))
-            else:
-                self.model.add(tf.keras.layers.Dense(10, activation=tf.nn.softmax))
-                
-    def setLayers(self, pLayers):
-        self.layers = pLayers
-    
+            
+
+    """
+     TODO: die Messages müssen umgeschrieben werden. 
+     Die Ergebnisse des Tests sollten zurückgegeben werden als Array und über den 
+     Controller in Consolen bzw. GUI umgeleitet werden
+    """
     def test(self):
-        (x_train, y_train),(x_test, y_test) = self.dataset.load_data()
-        x_test = tf.keras.utils.normalize(x_test, axis=1)
+        (x_test, y_test) = self.dataset.getTestData()
+        x_test = self.dataset.normalize(x_test)
         for test in range(len(x_test)):
             for row in range(28):
                 for x in range(28):
@@ -71,12 +60,9 @@ class NeuronalesNetz(object):
             print("I predict this number is a:", guess)
             print("Number Actually Is a:", actual)
             if guess != actual:
-                #print("--------------")
-                #print('WRONG')
-                #print('---------------')
                 count+=1
         print("The program got", count, 'wrong, out of', len(x_test))
         print(str(100 - ((count/len(x_test))*100)) + '% correct')
     
     def load(self, pPfad):
-        self.model = tf.keras.models.load_model(pPfad)
+        self.regelwerk.ladeNetzwerk(pPfad)
