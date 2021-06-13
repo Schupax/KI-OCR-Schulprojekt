@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+import time
 
 pygame.init()
 
@@ -84,29 +85,38 @@ train = button(600, 350, 'Train')
 
 
 
+
+
 run = True
 while run:
 
-	screen.fill((200, 200, 200))
+    screen.fill((200, 200, 200))
 
-	if load.draw_button():
-		print('Load Network')
-	if save.draw_button():
-		print('Save Network')
-	if train.draw_button():
-		print('Train')
-	if test.draw_button():
-		print('Test')
+    if load.draw_button():
+        print('Load Network')
+        label = font.render('Load Network', 1, black)
+        screen.blit(label, (100,100))
+        pygame.display.update()
+
+        time.sleep(1)
+    if save.draw_button():
+        print('Save Network')
+    if train.draw_button():
+        print('Train')
+    if test.draw_button():
+        print('Test')
         
+    label = font.render('Console', 1, black)
+    screen.blit(label, (50,50))
+    pygame.display.update()
     
-    
 
-	for event in pygame.event.get():
-		if event.type == pygame.QUIT:
-			run = False	
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False	
 
 
-	pygame.display.update()
+    pygame.display.update()
 
 
 pygame.quit()
