@@ -16,16 +16,17 @@ class Regelwerk(object):
                       metrics=['accuracy'])
         self.model.fit(x_train, y_train, epochs=3)
         
-    def initLayers(self):
+    def initLayers(self,pLayers):
         self.model.add(tf.keras.layers.Flatten())
-        for layer in self.layers:
+        for layer in pLayers:
             if layer.getLayerType() == 1 or layer.getLayerType() == 2:
                 self.model.add(tf.keras.layers.Dense(layer.getNeuronenAnzahl(), activation=tf.nn.relu))
             else:
-                self.model.add(tf.keras.layers.Dense(10, activation=tf.nn.softmax))
+                self.model.add(tf.keras.layers.Dense(layer.getNeuronenAnzahl(), activation=tf.nn.softmax))
                 
     def ladeNetzwerk(self, pPfad):
         self.model = tf.keras.models.load_model(pPfad)
-        
     def speicherNetzwerk(self, pPfad):
         self.model.save(pPfad)
+    def vorhersagen(self, pTestDaten):
+        return self.model.predict(pTestDaten[:10])

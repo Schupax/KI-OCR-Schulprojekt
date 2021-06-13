@@ -1,9 +1,11 @@
 import numpy as np
-import Dataset
-import Regelwerk
+from Dataset import Dataset
+from Layer import Layer
+from Regelwerk import Regelwerk
 
 """
-    Diese Modellklasse fasst die Eigenschaften und Funktionen/Methoden eines neuronalen Netzes zusammen.
+    Diese Modellklasse fasst die Eigenschaften und Funktionen/Methoden eines 
+    neuronalen Netzes zusammen. TODO: alle model referenzen entfernen/kapseln
 """
 
 class NeuronalesNetz(object):
@@ -20,7 +22,7 @@ class NeuronalesNetz(object):
         
         
     def train(self):
-        self.__initLayers()
+        self.regelwerk.initLayers(self.layers)
         (x_train, y_train) = self.dataset.getTrainingData()
         x_train = self.dataset.normalize(x_train)
         for train in range(len(x_train)):
@@ -28,7 +30,7 @@ class NeuronalesNetz(object):
                 for x in range(28):
                     if x_train[train][row][x] != 0:
                         x_train[train][row][x] = 1
-        self.regelwerk.fit()
+        self.regelwerk.fit(self.dataset.getTrainingData())
         self.wurdeTrainiert = True
     
     def save(self, pPfad):
@@ -38,9 +40,8 @@ class NeuronalesNetz(object):
             #Message/ Exception ´´ 
             
 
-    """
-     TODO: die Messages müssen umgeschrieben werden. 
-     Die Ergebnisse des Tests sollten zurückgegeben werden als Array und über den 
+    """ TODO: die Messages mussen umgeschrieben werden. 
+     Die Ergebnisse des Tests sollten zuruckgegeben werden als Array und uber den 
      Controller in Consolen bzw. GUI umgeleitet werden
     """
     def test(self):
@@ -51,11 +52,11 @@ class NeuronalesNetz(object):
                 for x in range(28):
                     if x_test[test][row][x] != 0:
                         x_test[test][row][x] = 1
-        predictions = self.model.predict(x_test[:10])
+        vorhersagen = self.regelwerk.vorhersagen(x_test)
         actual = y_test[x]
         count = 0
-        for x in range(len(predictions)):
-            guess = (np.argmax(predictions[x]))
+        for x in range(len(vorhersagen)):
+            guess = (np.argmax(vorhersagen[x]))
             actual = y_test[x]
             print("I predict this number is a:", guess)
             print("Number Actually Is a:", actual)
@@ -64,5 +65,5 @@ class NeuronalesNetz(object):
         print("The program got", count, 'wrong, out of', len(x_test))
         print(str(100 - ((count/len(x_test))*100)) + '% correct')
     
-    def load(self, pPfad):
+    def laden(self, pPfad):
         self.regelwerk.ladeNetzwerk(pPfad)

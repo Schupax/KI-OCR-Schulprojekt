@@ -6,7 +6,8 @@ class Dataset(object):
     
     
     def loadMNIST(self):
-        (x_train, y_train),(x_test, y_test) = self.dataset.load_data()
+        mnist = tf.keras.datasets.mnist
+        (x_train, y_train),(x_test, y_test) = mnist.load_data()
         self.__trainingData = (x_train, y_train)
         self.__testData = (x_test, y_test)
         
