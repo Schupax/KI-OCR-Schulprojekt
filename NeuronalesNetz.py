@@ -5,7 +5,7 @@ from Regelwerk import Regelwerk
 
 """
     Diese Modellklasse fasst die Eigenschaften und Funktionen/Methoden eines 
-    neuronalen Netzes zusammen. TODO: alle model referenzen entfernen/kapseln
+    neuronalen Netzes zusammen.
 """
 
 class NeuronalesNetz(object):
@@ -21,7 +21,7 @@ class NeuronalesNetz(object):
             self.dataset = pDataset
         
         
-    def train(self):
+    def trainieren(self):
         self.regelwerk.initLayers(self.layers)
         (x_train, y_train) = self.dataset.getTrainingData()
         x_train = self.dataset.normalize(x_train)
@@ -44,7 +44,7 @@ class NeuronalesNetz(object):
      Die Ergebnisse des Tests sollten zuruckgegeben werden als Array und uber den 
      Controller in Consolen bzw. GUI umgeleitet werden
     """
-    def test(self):
+    def testen(self):
         (x_test, y_test) = self.dataset.getTestData()
         x_test = self.dataset.normalize(x_test)
         for test in range(len(x_test)):

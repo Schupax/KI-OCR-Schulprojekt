@@ -1,7 +1,4 @@
-import install_requirements
-from Layer import Layer
 from Regelwerk import Regelwerk
-from Dataset import Dataset
 from NeuronalesNetz import NeuronalesNetz
 
 
@@ -20,21 +17,11 @@ class Controller(object):
     def speichere(self, pNeuronalesNetz, pPfad):   
         pNeuronalesNetz.save(pPfad)
     #in testNetwork fehlt Funktion zum testen      
-    def test(self,pNeuronalesNetz):
-        pNeuronalesNetz.test()
+    def testen(self,pNeuronalesNetz):
+        pNeuronalesNetz.testen()
     #in createModel fehlt Funktion zum trainieren
-    def train(self,pNeuronalesNetz):  
-        pNeuronalesNetz.train()
+    def trainieren(self,pNeuronalesNetz):  
+        pNeuronalesNetz.trainieren()
         
-        
-def testCase():
-    inputLayer = Layer(128,1)
-    hiddenLayer = Layer(128,2)
-    outputLayer = Layer(10,3)
-    layers = [inputLayer,hiddenLayer,outputLayer]
-    regelwerk = Regelwerk()
-    dataset = Dataset()
-    dataset.loadMNIST()
-    netz = NeuronalesNetz(layers,regelwerk,dataset)
     
     
