@@ -4,6 +4,7 @@ from NeuronalesNetz import NeuronalesNetz
 from Regelwerk import Regelwerk
 from Dataset import Dataset
 from Layer import Layer
+import pygame
 
 class KonsolenAnwendung(object):
     
@@ -31,21 +32,25 @@ class KonsolenAnwendung(object):
                     
             if option == "trainieren":
                 if self.istNetzAngelegt():
+                    print(colored("Dieser Prozess kann einige Minuten dauern bitte warten","yellow"))
                     self.controller.trainieren(self.netz)
                     
             if option == "testen mit Testdaten":
                 if self.istNetzAngelegt():
+                    print(colored("Dieser Prozess kann einige Minuten dauern bitte warten","yellow"))
                     self.controller.testen(self.netz)
                     
             if option == "testen mit Input":
                 if self.istNetzAngelegt():
+                    1
                     ##TODO hier fehlt noch die Funktion, die auf die MiniGui zugreift und die Funktion zum Controller
-                    self.controller.test(self.netz)
+                    
                 
     
     def getOption(self):
         x = 1
         print("Die folgenden Optionen sind möglich: (1-{})".format(len(self.optionen)))
+        print("Neuronales Netz")
         for option in self.optionen:
             print("{} {}".format(x,option))
             x=x+1
@@ -63,6 +68,8 @@ class KonsolenAnwendung(object):
     def erstelleNetzwerk(self):
         aktOption = -1
         layers = []
+        inputLayerAngelegt = False
+        outputLayerAngelegt = False
         while aktOption != 0 and aktOption != 2:
             optionen = ["abbrechen","Layer anlegen", "Netzwerkerstellung abschließen"]
             x = 1
@@ -74,8 +81,7 @@ class KonsolenAnwendung(object):
                 aktOption = int(input()) -1
             except ValueError:
                 print(colored("Die Eingabe muss zwischen 1 und {} liegen".format(len(optionen)),"red"))
-            inputLayerAngelegt = False
-            outputLayerAngelegt = False
+            
             
             if aktOption == 1: ##Layer anlegen
                 layer = self.erstelleLayer()
@@ -84,17 +90,17 @@ class KonsolenAnwendung(object):
                 if layer.getLayerType() == 3:
                     outputLayerAngelegt = True
                 layers.append(layer)
-                print("Layer wurde angelegt")
+                print(colored("Layer wurde angelegt","green"))
             if aktOption == 2: ##Netzwerkerstellung abschließen
-                if inputLayerAngelegt != True:
+                if inputLayerAngelegt == False:
                     print(colored("Erstellung des Netzwerks konnte nicht abgeschlossen werden","red"))
                     print(colored("Ein Inputlayer fehlt","red"))
                     aktOption = -1
-                if outputLayerAngelegt != True:
+                if outputLayerAngelegt == False:
                     print(colored("Erstellung des Netzwerks konnte nicht abgeschlossen werden","red"))
                     print(colored("Ein Outputlayer fehlt","red"))
                     aktOption = -1
-                if aktOption != 2:
+                if aktOption == 2:
                     dataset = Dataset()
                     dataset.loadMNIST()
                     self.netz = NeuronalesNetz(layers,Regelwerk(),dataset)
@@ -104,16 +110,16 @@ class KonsolenAnwendung(object):
             
             
         
-    def erstelleLayer():
+    def erstelleLayer(self):
         neuronenAnzahl = -1
         layerTyp = -1
         print("Bitte gibt die Anzahl der Neuronen für das Layer ein:")
         while(neuronenAnzahl == -1):
             try:
-                i = int(input()) -1
+                i = int(input())
             except ValueError:
                 print(colored("Die Eingabe muss eine Ganzzahl sein größer als 0!","red"))
-            if i >0:
+            if i <0:
                 print(colored("Die Eingabe muss eine Ganzzahl sein größer als 0","red"))
             else:
                 neuronenAnzahl = i
@@ -121,12 +127,12 @@ class KonsolenAnwendung(object):
         print("1 --> Inputlayer")
         print("2 --> Hiddenlayer")
         print("3 --> Outputlayer")
-        while(neuronenAnzahl == -1):
+        while(layerTyp == -1):
             try:
-                i = int(input()) -1
+                i = int(input())
             except ValueError:
                 print(colored("Die Eingabe muss eine Ganzzahl muss zwischen 1 und 3 sein","red"))
-            if i >0 and i < 4:
+            if i < 0 and i > 4:
                 print(colored("Die Eingabe muss eine Ganzzahl muss zwischen 1 und 3 sein","red"))
             else:
                 layerTyp = i

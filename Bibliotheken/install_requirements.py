@@ -7,9 +7,8 @@ import contextlib
 
 def install(package):
     '''
-    installs a package using pip
-
-    :param package: string
+        installs a package using pip
+        :param package: string
     '''
     subprocess.call([sys.executable, "-m", "pip", "install", package])
 

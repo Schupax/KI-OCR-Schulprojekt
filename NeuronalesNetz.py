@@ -30,6 +30,7 @@ class NeuronalesNetz(object):
                 for x in range(28):
                     if x_train[train][row][x] != 0:
                         x_train[train][row][x] = 1
+        ##TODO: nur normalisierte Trainingsdaten dürfen hier eigentlich rein
         self.regelwerk.fit(self.dataset.getTrainingData())
         self.wurdeTrainiert = True
     
