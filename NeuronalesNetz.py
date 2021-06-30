@@ -53,18 +53,13 @@ class NeuronalesNetz(object):
                 for x in range(28):
                     if x_test[test][row][x] != 0:
                         x_test[test][row][x] = 1
-        vorhersagen = self.regelwerk.vorhersagen(x_test)
-        actual = y_test[x]
-        count = 0
-        for x in range(len(vorhersagen)):
-            guess = (np.argmax(vorhersagen[x]))
-            actual = y_test[x]
-            print("I predict this number is a:", guess)
-            print("Number Actually Is a:", actual)
-            if guess != actual:
-                count+=1
-        print("The program got", count, 'wrong, out of', len(x_test))
-        print(str(100 - ((count/len(x_test))*100)) + '% correct')
+        self.regelwerk.vorhersagen(x_test)
+    
+    def testeBild(self, pZahlenBild):
+        vorhersagen = self.regelwerk.vorhersagen()
+        print(vorhersagen)
+
+        
     
     def laden(self, pPfad):
         self.regelwerk.ladeNetzwerk(pPfad)

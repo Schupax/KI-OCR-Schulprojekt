@@ -16,10 +16,13 @@ class Controller(object):
         
     def speichere(self, pNeuronalesNetz, pPfad):   
         pNeuronalesNetz.save(pPfad)
-    #in testNetwork fehlt Funktion zum testen      
+        
     def testen(self,pNeuronalesNetz):
         pNeuronalesNetz.testen()
-    #in createModel fehlt Funktion zum trainieren
+        
+    def testeBild(self,pNeuronalesNetz,pZahlenBild):
+        pNeuronalesNetz.testeBild(pZahlenBild)
+        
     def trainieren(self,pNeuronalesNetz):  
         pNeuronalesNetz.trainieren()
         

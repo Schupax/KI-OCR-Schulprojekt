@@ -1,17 +1,16 @@
 from termcolor import colored
-from Controller import Controller
 from NeuronalesNetz import NeuronalesNetz
 from Regelwerk import Regelwerk
 from Dataset import Dataset
 from Layer import Layer
-import pygame
+from View import View
+##import pygame
 
-class KonsolenAnwendung(object):
+class KonsolenAnwendung(View):
     
-    def __init__(self):    
+    def __init__(self):
+        super().__init__()
         self.optionen = ["erstellen", "laden", "speichern", "trainieren", "testen mit Testdaten", "testen mit Input", "beenden"]
-        self.controller = Controller()
-        self.netz = -1
         
         
     def start(self):
@@ -39,11 +38,13 @@ class KonsolenAnwendung(object):
                 if self.istNetzAngelegt():
                     print(colored("Dieser Prozess kann einige Minuten dauern bitte warten","yellow"))
                     self.controller.testen(self.netz)
+                    print(colored("Der Test wurde erfolgreich abgeschlossen.","green"))
                     
             if option == "testen mit Input":
                 if self.istNetzAngelegt():
-                    1
-                    ##TODO hier fehlt noch die Funktion, die auf die MiniGui zugreift und die Funktion zum Controller
+                    zahlenBild = self.schreibeZahl()
+                    self.controller.testeBild(self.netz,zahlenBild)
+                    
                     
                 
     
