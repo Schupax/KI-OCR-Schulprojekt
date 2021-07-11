@@ -31,7 +31,7 @@ class NeuronalesNetz(object):
                     if x_train[train][row][x] != 0:
                         x_train[train][row][x] = 1
         ##TODO: nur normalisierte Trainingsdaten dürfen hier eigentlich rein
-        self.regelwerk.fit(self.dataset.getTrainingData())
+        self.regelwerk.fit((x_train, y_train))
         self.wurdeTrainiert = True
     
     def save(self, pPfad):
@@ -53,13 +53,17 @@ class NeuronalesNetz(object):
                 for x in range(28):
                     if x_test[test][row][x] != 0:
                         x_test[test][row][x] = 1
-        self.regelwerk.vorhersagen(x_test)
+        self.regelwerk.vorhersagen(x_test,10)
     
     def testeBild(self, pZahlenBild):
-        vorhersagen = self.regelwerk.vorhersagen()
-        print(vorhersagen)
+        vorhersagen = self.regelwerk.vorhersagen(pZahlenBild,1)
+        vorhersage = (np.argmax(vorhersagen[0]))
+        return vorhersage
 
         
     
     def laden(self, pPfad):
         self.regelwerk.ladeNetzwerk(pPfad)
+        
+    def getDataset(self):
+        return self.dataset

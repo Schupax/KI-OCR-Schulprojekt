@@ -1,6 +1,7 @@
 from Controller import Controller
 import tensorflow as tf
 from abc import ABC, abstractmethod
+from Dataset import Dataset
 import pygame
 
 class View(ABC):
@@ -15,7 +16,7 @@ class View(ABC):
         width = height = 560
         win = pygame.display.set_mode((width, height))
         pygame.display.set_caption("Number Guesser")
-        g = grid(28, 28, width, height)
+        g = grid(28, 28, width, height, self.netz)
         habeErgebnis = False
 
         while habeErgebnis == False:
@@ -95,7 +96,8 @@ class pixel(object):
 class grid(object):
     pixels = []
 
-    def __init__(self, row, col, width, height):
+    def __init__(self, row, col, width, height, netz):
+        self.netz = netz
         self.rows = row
         self.cols = col
         self.len = row * col
@@ -146,9 +148,9 @@ class grid(object):
                 else:
                     newMatrix[i].append(1)
 
-        mnist = tf.keras.datasets.mnist
-        (x_train, y_train), (x_test, y_test) = mnist.load_data()
-        x_test = tf.keras.utils.normalize(x_test, axis=1)
+        dataset = self.netz.getDataset()
+        (x_test, y_test) = dataset.getTestData()
+        ##dataset.normalize(x_test)
         for row in range(28):
             for x in range(28):
                 x_test[0][row][x] = newMatrix[row][x]

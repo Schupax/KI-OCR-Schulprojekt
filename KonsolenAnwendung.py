@@ -44,9 +44,8 @@ class KonsolenAnwendung(View):
                     
             if option == "testen mit Input":
                 if self.istNetzAngelegt():
-                    zahlenBild = self.schreibeZahl()
-                    self.controller.testeBild(self.netz,zahlenBild)
-                    
+                    vorhersage = self.controller.testeBild(self.netz,self.schreibeZahl())
+                    print(colored("Ich denke das ist eine: {}".format(vorhersage),"yellow"))
                     
                 
     

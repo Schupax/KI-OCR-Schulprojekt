@@ -28,5 +28,8 @@ class Regelwerk(object):
         self.model = tf.keras.models.load_model(pPfad)
     def speicherNetzwerk(self, pPfad):
         self.model.save(pPfad)
-    def vorhersagen(self, pTestDaten):
-        return self.model.predict(pTestDaten[:10])
+    def vorhersagen(self, pTestDaten, pBreite):
+        if pBreite == 10:
+            return self.model.predict(pTestDaten[:pBreite])
+        else:
+            return self.model.predict(pTestDaten)

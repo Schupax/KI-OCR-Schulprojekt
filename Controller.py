@@ -24,7 +24,7 @@ class Controller(object):
         pNeuronalesNetz.testen()
         
     def testeBild(self,pNeuronalesNetz,pZahlenBild):
-        pNeuronalesNetz.testeBild(pZahlenBild)
+        return pNeuronalesNetz.testeBild(pZahlenBild)
         
     def trainieren(self,pNeuronalesNetz):  
         pNeuronalesNetz.trainieren()
