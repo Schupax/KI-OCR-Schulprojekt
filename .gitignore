@@ -1,0 +1,10 @@
+
+__pycache__/Controller.cpython-38.pyc
+__pycache__/Dataset.cpython-38.pyc
+__pycache__/Layer.cpython-38.pyc
+__pycache__/NeuronalesNetz.cpython-38.pyc
+__pycache__/Regelwerk.cpython-38.pyc
+__pycache__/View.cpython-38.pyc
+my_model.tf/saved_model.pb
+my_model.tf/variables/variables.data-00000-of-00001
+my_model.tf/variables/variables.index

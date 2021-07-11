@@ -1,4 +1,5 @@
 from Regelwerk import Regelwerk
+from Dataset import Dataset
 from NeuronalesNetz import NeuronalesNetz
 
 
@@ -10,7 +11,9 @@ class Controller(object):
     
     def lade(self,pPfad):
         regelwerk = Regelwerk()
-        netz = NeuronalesNetz(0,regelwerk,-1)
+        dataset = Dataset()
+        dataset.loadMNIST()
+        netz = NeuronalesNetz(0,regelwerk,dataset)
         netz.laden(pPfad)
         return netz
         

@@ -23,11 +23,13 @@ class KonsolenAnwendung(View):
                 self.erstelleNetzwerk()
                 
             if option == "laden":
-                self.netz = self.controller.lade(self.netz,self.getPfad())
+                self.netz = self.controller.lade('my_model.tf')
+                print(colored("Das Netz wurde erfolgreich geladen","green"))
                 
             if option == "speichern":
                 if self.istNetzAngelegt():
-                    self.controller.speichere(self.netz,self.getPfad())
+                    self.controller.speichere(self.netz,'my_model.tf')
+                    print(colored("Das Netz wurde erfolgreich gespeichert","green"))
                     
             if option == "trainieren":
                 if self.istNetzAngelegt():
@@ -132,9 +134,9 @@ class KonsolenAnwendung(View):
             try:
                 i = int(input())
             except ValueError:
-                print(colored("Die Eingabe muss eine Ganzzahl muss zwischen 1 und 3 sein","red"))
+                print(colored("Die Eingabe muss eine Ganzzahl zwischen 1 und 3 sein","red"))
             if i < 0 and i > 4:
-                print(colored("Die Eingabe muss eine Ganzzahl muss zwischen 1 und 3 sein","red"))
+                print(colored("Die Eingabe muss eine Ganzzahl zwischen 1 und 3 sein","red"))
             else:
                 layerTyp = i
         return Layer(neuronenAnzahl,layerTyp)
@@ -143,11 +145,7 @@ class KonsolenAnwendung(View):
         if(self.netz != -1):
             return True
         else:
-            print("Es ist kein Netz vorhanden, dass gespeichert werden könnte")
+            print("Es ist kein Netz vorhanden, dass genutzt werden könnte")
             return False
-        
-    ##Hier fehlt noch eine Funktion um einen Pfad einzulesen
-    def getPfad(self):
-        1
     
 KonsolenAnwendung().start()
