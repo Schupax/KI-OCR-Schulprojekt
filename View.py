@@ -150,7 +150,7 @@ class grid(object):
 
         dataset = self.netz.getDataset()
         (x_test, y_test) = dataset.getTestData()
-        ##dataset.normalize(x_test)
+        dataset.normalize(x_test)
         for row in range(28):
             for x in range(28):
                 x_test[0][row][x] = newMatrix[row][x]

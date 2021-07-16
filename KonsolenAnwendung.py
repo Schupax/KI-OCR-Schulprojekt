@@ -115,7 +115,7 @@ class KonsolenAnwendung(View):
     def erstelleLayer(self):
         neuronenAnzahl = -1
         layerTyp = -1
-        print("Bitte gibt die Anzahl der Neuronen für das Layer ein:")
+        print("Bitte gib die Anzahl der Neuronen für den Layer ein:")
         while(neuronenAnzahl == -1):
             try:
                 i = int(input())
@@ -125,7 +125,7 @@ class KonsolenAnwendung(View):
                 print(colored("Die Eingabe muss eine Ganzzahl sein größer als 0","red"))
             else:
                 neuronenAnzahl = i
-        print("Bitte gibt den Typ für das Layer an:")
+        print("Bitte gib den Typ für den Layer an:")
         print("1 --> Inputlayer")
         print("2 --> Hiddenlayer")
         print("3 --> Outputlayer")
