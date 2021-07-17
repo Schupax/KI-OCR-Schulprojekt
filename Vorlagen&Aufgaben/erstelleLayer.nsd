@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:nsd="http://structorizer.fisch.lu/" version="3.25" text="&#34;erstelleLayer&#34;" comment="" color="ffffff" type="program" style="nice">
+	<children>
+		<instruction text="&#34;neuronenanzahl = -1&#34;" comment="" color="ffffff" rotated="0"></instruction>
+		<instruction text="&#34;layertyp = -1&#34;" comment="" color="ffffff" rotated="0"></instruction>
+		<while text="&#34;while (neuronenanzahl == -1)&#34;" comment="&#34;Solange es keine richtige Neuronenanzahl eingegeben wurde, wird versucht eine einzulesen&#34;" color="ffffff">
+			<qWhile>
+				<instruction text="&#34;print(&#34;&#34;Bitte gib die Anzahl der Neuronen für den Layer ein:&#34;&#34;)&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+				<instruction text="&#34;eingabe = input()&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+				<alternative text="&#34;if(eingabe &#62; 0)&#34;" comment="&#34;&#34;" color="ffffff">
+					<qTrue>
+						<instruction text="&#34;neuronenanzahl = eingabe&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+					</qTrue>
+					<qFalse>
+						<instruction text="&#34;print(&#34;&#34;die Eingabe muss größer als 0 sein!&#34;&#34;)&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+					</qFalse>
+				</alternative>
+			</qWhile>
+		</while>
+		<while text="&#34;while (layertyp == -1)&#34;" comment="&#34;Solange kein richtiger Layertyp eingegeben wurde, wird versucht einer einzulesen&#34;" color="ffffff">
+			<qWhile>
+				<instruction text="&#34;print(&#34;&#34;Bitte gib einen Layertyp an (Werte von 1-3):&#34;&#34;)&#34;,&#34;print(&#34;&#34;1 --&#62; Inputlayer&#34;&#34;)&#34;,&#34;print(&#34;&#34;2 --&#62; Hiddenlayer&#34;&#34;)&#34;,&#34;print(&#34;&#34;3 --&#62; Outputlayer&#34;&#34;)&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+				<instruction text="&#34;eingabe = input()&#34;" comment="" color="ffffff" rotated="0"></instruction>
+				<alternative text="&#34;if(eingabe &#62; 0 &amp;&amp; eingabe &#60;4)&#34;" comment="&#34;&#34;" color="ffffff">
+					<qTrue>
+						<instruction text="&#34;layertyp = eingabe&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+					</qTrue>
+					<qFalse>
+						<instruction text="&#34;print(&#34;&#34;die Eingabe muss größer als 0 sein und kleienr als 4!&#34;&#34;)&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+					</qFalse>
+				</alternative>
+			</qWhile>
+		</while>
+		<instruction text="&#34;return Layer(neuronenanzahl, layertyp)&#34;" comment="&#34;&#34;" color="ffffff" rotated="0"></instruction>
+	</children>
+</root>
