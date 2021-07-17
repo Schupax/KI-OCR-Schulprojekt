@@ -66,79 +66,23 @@ class KonsolenAnwendung(View):
         else:
             print(colored("Die Eingabe muss zwischen 1 und {} liegen".format(len(self.optionen)),"red"))
             return -1
-        
+     
+    
+    """
+        Diese Methode soll nach dem Struktugramm implementiert werden.
+    """
     def erstelleNetzwerk(self):
-        aktOption = -1
-        layers = []
-        inputLayerAngelegt = False
-        outputLayerAngelegt = False
-        while aktOption != 0 and aktOption != 2:
-            optionen = ["abbrechen","Layer anlegen", "Netzwerkerstellung abschließen"]
-            x = 1
-            print("Die folgenden Optionen sind möglich: (1-{})".format(len(optionen)))
-            for option in optionen:
-                print("{} {}".format(x,option))
-                x=x+1
-            try:
-                aktOption = int(input()) -1
-            except ValueError:
-                print(colored("Die Eingabe muss zwischen 1 und {} liegen".format(len(optionen)),"red"))
-            
-            
-            if aktOption == 1: ##Layer anlegen
-                layer = self.erstelleLayer()
-                if layer.getLayerType() == 1:
-                    inputLayerAngelegt = True
-                if layer.getLayerType() == 3:
-                    outputLayerAngelegt = True
-                layers.append(layer)
-                print(colored("Layer wurde angelegt","green"))
-            if aktOption == 2: ##Netzwerkerstellung abschließen
-                if inputLayerAngelegt == False:
-                    print(colored("Erstellung des Netzwerks konnte nicht abgeschlossen werden","red"))
-                    print(colored("Ein Inputlayer fehlt","red"))
-                    aktOption = -1
-                if outputLayerAngelegt == False:
-                    print(colored("Erstellung des Netzwerks konnte nicht abgeschlossen werden","red"))
-                    print(colored("Ein Outputlayer fehlt","red"))
-                    aktOption = -1
-                if aktOption == 2:
-                    dataset = Dataset()
-                    dataset.loadMNIST()
-                    self.netz = NeuronalesNetz(layers,Regelwerk(),dataset)
-                    print(colored("Erstellung des Netzwerks wurde abgeschlossen","green"))
+        print("Die Erstellung eines neuronalen Netzs wurde noch nicht implementiert!")
             
             
             
             
-        
+    """
+        Diese Methode soll nach dem Struktugramm implementiert werden.
+    """
     def erstelleLayer(self):
-        neuronenAnzahl = -1
-        layerTyp = -1
-        print("Bitte gib die Anzahl der Neuronen für den Layer ein:")
-        while(neuronenAnzahl == -1):
-            try:
-                i = int(input())
-            except ValueError:
-                print(colored("Die Eingabe muss eine Ganzzahl sein größer als 0!","red"))
-            if i <0:
-                print(colored("Die Eingabe muss eine Ganzzahl sein größer als 0","red"))
-            else:
-                neuronenAnzahl = i
-        print("Bitte gib den Typ für den Layer an:")
-        print("1 --> Inputlayer")
-        print("2 --> Hiddenlayer")
-        print("3 --> Outputlayer")
-        while(layerTyp == -1):
-            try:
-                i = int(input())
-            except ValueError:
-                print(colored("Die Eingabe muss eine Ganzzahl zwischen 1 und 3 sein","red"))
-            if i < 0 and i > 4:
-                print(colored("Die Eingabe muss eine Ganzzahl zwischen 1 und 3 sein","red"))
-            else:
-                layerTyp = i
-        return Layer(neuronenAnzahl,layerTyp)
+        print("Die Erstellung eines Layers wurde noch nicht implementiert!")
+        
         
     def istNetzAngelegt(self):
         if(self.netz != -1):
