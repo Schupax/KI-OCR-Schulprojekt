@@ -17,7 +17,7 @@ class Dataset(object):
     def getTestData(self):
         return self.__testData
     
-    def normalize(self, pXtrain):
+    def normalisiere(self, pXtrain):
         return tf.keras.utils.normalize(pXtrain, axis=1)
     
     

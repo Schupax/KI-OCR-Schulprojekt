@@ -22,16 +22,16 @@ class NeuronalesNetz(object):
         
         
     def trainieren(self):
-        self.regelwerk.initLayers(self.layers)
+        self.regelwerk.initialisiereLayers(self.layers)
         (x_train, y_train) = self.dataset.getTrainingData()
-        x_train = self.dataset.normalize(x_train)
+        x_train = self.dataset.normalisiere(x_train)
         for train in range(len(x_train)):
             for row in range(28):
                 for x in range(28):
                     if x_train[train][row][x] != 0:
                         x_train[train][row][x] = 1
         ##TODO: nur normalisierte Trainingsdaten dürfen hier eigentlich rein
-        self.regelwerk.fit((x_train, y_train))
+        self.regelwerk.anpassen((x_train, y_train))
         self.wurdeTrainiert = True
     
     def save(self, pPfad):

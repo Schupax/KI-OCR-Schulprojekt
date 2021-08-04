@@ -9,17 +9,17 @@ class Regelwerk(object):
     def __init__(self):
         self.model = tf.keras.models.Sequential()
         
-    def fit(self, pTrainingData):
+    def anpassen(self, pTrainingData):
         (x_train, y_train) = pTrainingData
         self.model.compile(optimizer='adam',
                       loss='sparse_categorical_crossentropy',
                       metrics=['accuracy'])
         self.model.fit(x_train, y_train, epochs=3)
         
-    def initLayers(self,pLayers):
+    def initialisiereLayers(self,pLayers):
         self.model.add(tf.keras.layers.Flatten())
         for layer in pLayers:
-            if layer.getLayerType() == 1 or layer.getLayerType() == 2:
+            if layer.gibLayerType() == 1 or layer.gibLayerType() == 2:
                 self.model.add(tf.keras.layers.Dense(layer.getNeuronenAnzahl(), activation=tf.nn.relu))
             else:
                 self.model.add(tf.keras.layers.Dense(layer.getNeuronenAnzahl(), activation=tf.nn.softmax))
