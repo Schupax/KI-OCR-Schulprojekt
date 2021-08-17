@@ -69,7 +69,7 @@ class KonsolenAnwendung(View):
      
     
     """
-        Diese Methode soll nach dem Struktugramm implementiert werden.
+        Diese Methode soll nach dem Struktogramm implementiert werden.
     """
     def erstelleNetzwerk(self):
         print("Die Erstellung eines neuronalen Netzs wurde noch nicht implementiert!")
@@ -78,7 +78,7 @@ class KonsolenAnwendung(View):
             
             
     """
-        Diese Methode soll nach dem Struktugramm implementiert werden.
+        Diese Methode soll nach dem Struktogramm implementiert werden.
     """
     def erstelleLayer(self):
         print("Die Erstellung eines Layers wurde noch nicht implementiert!")
@@ -88,7 +88,7 @@ class KonsolenAnwendung(View):
         if(self.netz != -1):
             return True
         else:
-            print("Es ist kein Netz vorhanden, dass genutzt werden könnte")
+            print("Es ist kein Netz vorhanden, das genutzt werden könnte")
             return False
     
 KonsolenAnwendung().start()
