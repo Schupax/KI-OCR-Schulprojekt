@@ -47,7 +47,7 @@ class NeuronalesNetz(object):
     """
     def testen(self):
         (x_test, y_test) = self.dataset.getTestData()
-        x_test = self.dataset.normalize(x_test)
+        x_test = self.dataset.normalisiere(x_test)
         for test in range(len(x_test)):
             for row in range(28):
                 for x in range(28):

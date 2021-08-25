@@ -20,9 +20,9 @@ class Regelwerk(object):
         self.model.add(tf.keras.layers.Flatten())
         for layer in pLayers:
             if layer.gibLayerType() == 1 or layer.gibLayerType() == 2:
-                self.model.add(tf.keras.layers.Dense(layer.getNeuronenAnzahl(), activation=tf.nn.relu))
+                self.model.add(tf.keras.layers.Dense(layer.gibNeuronenAnzahl(), activation=tf.nn.relu))
             else:
-                self.model.add(tf.keras.layers.Dense(layer.getNeuronenAnzahl(), activation=tf.nn.softmax))
+                self.model.add(tf.keras.layers.Dense(layer.gibNeuronenAnzahl(), activation=tf.nn.softmax))
                 
     def ladeNetzwerk(self, pPfad):
         self.model = tf.keras.models.load_model(pPfad)

@@ -15,7 +15,7 @@ class KonsolenAnwendung(View):
         
     def start(self):
         while True:
-            option = self.getOption()
+            option = self.gibOption()
             if option == "beenden":
                 print("Das Programm wird beendet")
                 break;
@@ -49,7 +49,7 @@ class KonsolenAnwendung(View):
                     
                 
     
-    def getOption(self):
+    def gibOption(self):
         x = 1
         print("Die folgenden Optionen sind möglich: (1-{})".format(len(self.optionen)))
         print("Neuronales Netz")
@@ -87,9 +87,9 @@ class KonsolenAnwendung(View):
             
             if aktOption == 1: ##Layer anlegen
                 layer = self.erstelleLayer()
-                if layer.getLayerType() == 1:
+                if layer.gibLayerType() == 1:
                     inputLayerAngelegt = True
-                if layer.getLayerType() == 3:
+                if layer.gibLayerType() == 3:
                     outputLayerAngelegt = True
                 layers.append(layer)
                 print(colored("Layer wurde angelegt","green"))
