@@ -15,7 +15,7 @@ class KonsolenAnwendung(View):
         
     def start(self):
         while True:
-            option = self.getOption()
+            option = self.gibOption()
             if option == "beenden":
                 print("Das Programm wird beendet")
                 break;
@@ -23,12 +23,14 @@ class KonsolenAnwendung(View):
                 self.erstelleNetzwerk()
                 
             if option == "laden":
-                self.netz = self.controller.lade('my_model.tf')
+                name = self.gibNameEin("Laden") + ".tf"
+                self.netz = self.controller.lade(name)
                 print(colored("Das Netz wurde erfolgreich geladen","green"))
                 
             if option == "speichern":
                 if self.istNetzAngelegt():
-                    self.controller.speichere(self.netz,'my_model.tf')
+                    name = self.gibNameEin("Speichern") + ".tf"
+                    self.controller.speichere(self.netz,name)
                     print(colored("Das Netz wurde erfolgreich gespeichert","green"))
                     
             if option == "trainieren":
@@ -39,8 +41,8 @@ class KonsolenAnwendung(View):
             if option == "testen mit Testdaten":
                 if self.istNetzAngelegt():
                     print(colored("Dieser Prozess kann einige Minuten dauern bitte warten","yellow"))
-                    self.controller.testen(self.netz)
-                    print(colored("Der Test wurde erfolgreich abgeschlossen.","green"))
+                    ergebnis = self.controller.testen(self.netz)
+                    print(colored("Der Test wurde erfolgreich abgeschlossen mit einer Genauigkeit von {}%.".format(ergebnis),"green"))
                     
             if option == "testen mit Input":
                 if self.istNetzAngelegt():
@@ -49,7 +51,7 @@ class KonsolenAnwendung(View):
                     
                 
     
-    def getOption(self):
+    def gibOption(self):
         x = 1
         print("Die folgenden Optionen sind möglich: (1-{})".format(len(self.optionen)))
         print("Neuronales Netz")
@@ -90,5 +92,10 @@ class KonsolenAnwendung(View):
         else:
             print("Es ist kein Netz vorhanden, das genutzt werden könnte")
             return False
+    
+    def gibNameEin(self,pMethode):
+        print("Gib dem Netzwerk zum {} einen Name:".format(pMethode))
+        name = input()
+        return name;
     
 KonsolenAnwendung().start()

@@ -1,3 +1,4 @@
+import numpy as np
 from termcolor import colored
 from NeuronalesNetz import NeuronalesNetz
 from Regelwerk import Regelwerk
@@ -41,8 +42,8 @@ class KonsolenAnwendung(View):
             if option == "testen mit Testdaten":
                 if self.istNetzAngelegt():
                     print(colored("Dieser Prozess kann einige Minuten dauern bitte warten","yellow"))
-                    self.controller.testen(self.netz)
-                    print(colored("Der Test wurde erfolgreich abgeschlossen.","green"))
+                    ergebnis = self.controller.testen(self.netz)
+                    print(colored("Der Test wurde erfolgreich abgeschlossen mit einer Genauigkeit von {}%.".format(ergebnis),"green"))
                     
             if option == "testen mit Input":
                 if self.istNetzAngelegt():

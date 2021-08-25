@@ -41,10 +41,6 @@ class NeuronalesNetz(object):
             #Message/ Exception ´´ 
             
 
-    """ TODO: die Messages mussen umgeschrieben werden. 
-     Die Ergebnisse des Tests sollten zuruckgegeben werden als Array und uber den 
-     Controller in Consolen bzw. GUI umgeleitet werden
-    """
     def testen(self):
         (x_test, y_test) = self.dataset.getTestData()
         x_test = self.dataset.normalisiere(x_test)
@@ -53,7 +49,14 @@ class NeuronalesNetz(object):
                 for x in range(28):
                     if x_test[test][row][x] != 0:
                         x_test[test][row][x] = 1
-        self.regelwerk.vorhersagen(x_test,10)
+        vorhersagen = self.regelwerk.vorhersagen(x_test,10)
+        count = 0;
+        for x in range(len(vorhersagen)):
+            guess = (np.argmax(vorhersagen[x]))
+            actual = y_test[x]
+            if guess != actual:
+                count+=1
+        return str(100 - ((count/len(x_test))*100))
     
     def testeBild(self, pZahlenBild):
         vorhersagen = self.regelwerk.vorhersagen(pZahlenBild,1)

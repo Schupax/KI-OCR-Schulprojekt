@@ -8,3 +8,9 @@ __pycache__/View.cpython-38.pyc
 my_model.tf/saved_model.pb
 my_model.tf/variables/variables.data-00000-of-00001
 my_model.tf/variables/variables.index
+model_test.tf/saved_model.pb
+model_test.tf/variables/variables.data-00000-of-00001
+model_test.tf/variables/variables.index
+ohne_hidden.tf/saved_model.pb
+ohne_hidden.tf/variables/variables.data-00000-of-00001
+ohne_hidden.tf/variables/variables.index

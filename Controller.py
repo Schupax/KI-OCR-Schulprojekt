@@ -21,7 +21,7 @@ class Controller(object):
         pNeuronalesNetz.save(pPfad)
         
     def testen(self,pNeuronalesNetz):
-        pNeuronalesNetz.testen()
+        return pNeuronalesNetz.testen()
         
     def testeBild(self,pNeuronalesNetz,pZahlenBild):
         return pNeuronalesNetz.testeBild(pZahlenBild)
