@@ -20,4 +20,3 @@ class Dataset(object):
     def normalisiere(self, pXtrain):
         return tf.keras.utils.normalize(pXtrain, axis=1)
     
-    

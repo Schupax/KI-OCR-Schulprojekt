@@ -23,12 +23,14 @@ class KonsolenAnwendung(View):
                 self.erstelleNetzwerk()
                 
             if option == "laden":
-                self.netz = self.controller.lade('my_model.tf')
+                name = self.gibNameEin("Laden") + ".tf"
+                self.netz = self.controller.lade(name)
                 print(colored("Das Netz wurde erfolgreich geladen","green"))
                 
             if option == "speichern":
                 if self.istNetzAngelegt():
-                    self.controller.speichere(self.netz,'my_model.tf')
+                    name = self.gibNameEin("Speichern") + ".tf"
+                    self.controller.speichere(self.netz,name)
                     print(colored("Das Netz wurde erfolgreich gespeichert","green"))
                     
             if option == "trainieren":
@@ -146,5 +148,10 @@ class KonsolenAnwendung(View):
         else:
             print("Es ist kein Netz vorhanden, dass genutzt werden könnte")
             return False
+    
+    def gibNameEin(self,pMethode):
+        print("Gib dem Netzwerk zum {} einen Name:".format(pMethode))
+        name = input()
+        return name;
     
 KonsolenAnwendung().start()
