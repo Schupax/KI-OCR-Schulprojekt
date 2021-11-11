@@ -30,7 +30,6 @@ class NeuronalesNetz(object):
                 for x in range(28):
                     if x_train[train][row][x] != 0:
                         x_train[train][row][x] = 1
-        ##TODO: nur normalisierte Trainingsdaten dürfen hier eigentlich rein
         self.regelwerk.anpassen((x_train, y_train))
         self.wurdeTrainiert = True
     
@@ -49,7 +48,7 @@ class NeuronalesNetz(object):
                 for x in range(28):
                     if x_test[test][row][x] != 0:
                         x_test[test][row][x] = 1
-        vorhersagen = self.regelwerk.vorhersagen(x_test,10)
+        vorhersagen = self.regelwerk.vorhersagen(x_test)
         count = 0;
         for x in range(len(vorhersagen)):
             guess = (np.argmax(vorhersagen[x]))
