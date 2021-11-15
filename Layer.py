@@ -31,4 +31,4 @@ class Layer(object):
         if pLayerType > 0 and pLayerType < 4:
             self.layerType = pLayerType
         else:
-            print("Setzen des Layertpy ist fehlgeschlagen")
+            print("Setzen des Layertyp ist fehlgeschlagen")
