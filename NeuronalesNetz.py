@@ -55,7 +55,7 @@ class NeuronalesNetz(object):
             actual = y_test[x]
             if guess != actual:
                 count+=1
-        return str(100 - ((count/len(x_test))*100))
+        return "Der Test wurde erfolgreich abgeschlossen mit einer Genauigkeit von {}% bei {} Testdatensaetzen.".format(str(100 - ((count/len(x_test))*100)),len(x_test))
     
     def testeBild(self, pZahlenBild):
         vorhersagen = self.regelwerk.vorhersagen(pZahlenBild,1)

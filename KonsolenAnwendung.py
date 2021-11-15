@@ -43,7 +43,7 @@ class KonsolenAnwendung(View):
                 if self.istNetzAngelegt():
                     print(colored("Dieser Prozess kann einige Minuten dauern bitte warten","yellow"))
                     ergebnis = self.controller.testen(self.netz)
-                    print(colored("Der Test wurde erfolgreich abgeschlossen mit einer Genauigkeit von {}%.".format(ergebnis),"green"))
+                    print(colored(ergebnis,"green"))
                     
             if option == "testen mit Input":
                 if self.istNetzAngelegt():
