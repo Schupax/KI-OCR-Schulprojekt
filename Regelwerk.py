@@ -36,4 +36,4 @@ class Regelwerk(object):
         if pBreite > 0:
             return self.model.predict(pTestDaten[:pBreite])
         else:
-            self.vorhersagen(pTestDaten)
+            self.vorhersagen(pTestDaten,len(pTestDaten))

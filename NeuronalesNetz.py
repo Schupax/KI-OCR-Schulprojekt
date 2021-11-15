@@ -48,7 +48,7 @@ class NeuronalesNetz(object):
                 for x in range(28):
                     if x_test[test][row][x] != 0:
                         x_test[test][row][x] = 1
-        vorhersagen = self.regelwerk.vorhersagen(x_test,len(x_test))
+        vorhersagen = self.regelwerk.vorhersagen(x_test)
         count = 0;
         for x in range(len(vorhersagen)):
             guess = (np.argmax(vorhersagen[x]))
