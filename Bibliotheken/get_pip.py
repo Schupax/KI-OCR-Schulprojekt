@@ -21491,4 +21491,3 @@ K_Zewp`X>Mn8FL+;db7gX0WMyV)Ze?UHaCuNm1qJ{B001)qGXYg!006}%6aWAK
 if __name__ == "__main__":
     main()
 
-input("Taste druecken zum beenden.")

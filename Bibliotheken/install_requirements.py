@@ -72,4 +72,3 @@ if len(failed) > 0:
         else:
             print(package)
 
-input("Taste druecken zum beenden.")
