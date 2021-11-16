@@ -71,3 +71,5 @@ if len(failed) > 0:
             print(package, end=",")
         else:
             print(package)
+
+input("Taste druecken zum beenden.")
