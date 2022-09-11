@@ -33,9 +33,9 @@ class NeuronalesNetz(object):
         self.regelwerk.anpassen((x_train, y_train))
         self.wurdeTrainiert = True
     
-    def save(self, pPfad):
+    def speichern(self, pDateiname):
         if self.wurdeTrainiert:
-            self.regelwerk.speicherNetzwerk(pPfad)
+            self.regelwerk.speicherNetzwerk(pDateiname)
         #else:   
             #Message/ Exception ´´ 
             
@@ -64,8 +64,8 @@ class NeuronalesNetz(object):
 
         
     
-    def laden(self, pPfad):
-        self.regelwerk.ladeNetzwerk(pPfad)
+    def laden(self, pDateiname):
+        self.regelwerk.ladeNetzwerk(pDateiname)
         
     def getDataset(self):
         return self.dataset

@@ -8,6 +8,7 @@ import tensorflow as tf
 class Regelwerk(object):
     def __init__(self):
         self.model = tf.keras.models.Sequential()
+        self.netzwerkPfad = 'Netzwerke/'
         
     def anpassen(self, pTrainingData):
         (x_train, y_train) = pTrainingData
@@ -24,11 +25,11 @@ class Regelwerk(object):
             else:
                 self.model.add(tf.keras.layers.Dense(layer.gibNeuronenAnzahl(), activation=tf.nn.softmax))
                 
-    def ladeNetzwerk(self, pPfad):
-        self.model = tf.keras.models.load_model(pPfad)
+    def ladeNetzwerk(self, pDateiname):
+        self.model = tf.keras.models.load_model(self.netzwerkPfad + pDateiname)
         
-    def speicherNetzwerk(self, pPfad):
-        self.model.save(pPfad)
+    def speicherNetzwerk(self, pDateiname):
+        self.model.save(self.netzwerkPfad + pDateiname)
         
 
         

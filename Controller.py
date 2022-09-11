@@ -9,16 +9,16 @@ from NeuronalesNetz import NeuronalesNetz
 
 class Controller(object):
     
-    def lade(self,pPfad):
+    def lade(self,pDateiname):
         regelwerk = Regelwerk()
         dataset = Dataset()
         dataset.loadMNIST()
         netz = NeuronalesNetz(0,regelwerk,dataset)
-        netz.laden(pPfad)
+        netz.laden(pDateiname)
         return netz
         
-    def speichere(self, pNeuronalesNetz, pPfad):   
-        pNeuronalesNetz.save(pPfad)
+    def speichere(self, pNeuronalesNetz, pDateiname):   
+        pNeuronalesNetz.speichern(pDateiname)
         
     def testen(self,pNeuronalesNetz):
         return pNeuronalesNetz.testen()
