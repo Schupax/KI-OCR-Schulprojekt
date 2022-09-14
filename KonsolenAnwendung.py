@@ -32,7 +32,6 @@ class KonsolenAnwendung(View):
                 if self.istNetzAngelegt():
                     name = self.gibNameEin("Speichern") + ".tf"
                     self.controller.speichere(self.netz,name)
-                    print(colored("Das Netz wurde erfolgreich gespeichert","green"))
                     
             if option == "trainieren":
                 if self.istNetzAngelegt():

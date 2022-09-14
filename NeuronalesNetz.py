@@ -36,9 +36,9 @@ class NeuronalesNetz(object):
     def speichern(self, pDateiname):
         if self.wurdeTrainiert:
             self.regelwerk.speicherNetzwerk(pDateiname)
-        #else:   
-            #Message/ Exception ´´ 
-            
+            print("Das Netz wurde erfolgreich gespeichert")
+        else:   
+            print("Das Netz wurde nicht gespeichert. Es muss erst trainiert werden.")
 
     def testen(self):
         (x_test, y_test) = self.dataset.getTestData()
